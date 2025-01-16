@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Operations</title>
+  <script>
+    var baseURL = 'http://192.168.100.193:4000';
+    async function loadStudents() {
+      
+      const response = await fetch(baseURL + '/students');
+      const students = await response.json();
+      
+      const studentList = document.getElementById('student-list');
+      studentList.innerHTML = '';
+      
+      students.forEach(student => {
+        const li = document.createElement('li');
+        li.textContent = `Name: ${student.name}, Shape: ${student.shape}`;
+        
+        // Add Update and Delete buttons
+        const updateButton = document.createElement('button');
+        updateButton.textContent = 'Update';
+        updateButton.onclick = () => updateStudent(student._id);
+        
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => deleteStudent(student._id);
+
+        li.appendChild(updateButton);
+        li.appendChild(deleteButton);
+        
+        studentList.appendChild(li);
+      });
+    }
+
+    async function updateStudent(id) {
+      const name = prompt('Enter new name:');
+      const shape = prompt('Enter new shape:');
+
+      const response = await fetch(baseURL + `/student/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, shape }),
+      });
+
+      const result = await response.text();
+      alert(result);
+      loadStudents();
+    }
+
+    async function deleteStudent(id) {
+      const response = await fetch(`${baseURL}/students/${id}`, {
+        method: 'DELETE',
+      });
+
+      const result = await response.text();
+      alert(result);
+      loadStudents();
+    }
+
+    window.onload = loadStudents;
+  </script>
+</head>
+<body>
+  <h1>CRUD Operations for Students</h1>
+
+  <h2>Add New Student</h2>
+  <form action="/submit" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="shape">Shape:</label>
+    <input type="text" id="shape" name="shape" required><br><br>
+
+    <button type="submit">Add Student</button>
+  </form>
+
+  <h2>Students List</h2>
+  <ul id="student-list">
+
+  </ul>
+
+</body>
+</html>
