@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CRUD-APP</title>
+   
+</head>
+
+<body>
+    <h1>Add Your Info Here</h1>
+
+    <div class="search-container">
+        <i class="search-icon">&#128269;</i> <!-- Unicode for search icon -->
+        <input type="text" id="searchBox" placeholder="Search..." onkeyup="searchTable()" />
+    </div>
+    <table>
+        <tr>
+            <td>
+                <form autocomplete="off" onsubmit="onFormSubmit()">
+                    <div>
+                        <label for="Code">ID</label>
+                        <input type="number" name="ID" id="Code" placeholder="Enter your id" />
+                    </div>
+                    <div>
+                        <label for="Name">Name</label>
+                        <input type="text" name="Name" id="Name" placeholder="Enter your name" />
+                    </div>
+
+                    <div>
+                        <label for="Email">Email</label>
+                        <input type="text" name="Email" id="Email" placeholder="Enter your Email" />
+                    </div>
+                    <div class="space">
+                        <label for="Gender">Gender</label>
+                        <select name="Gender" id="Gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <label for="city">City</label>
+                        <select name="City" id="city">
+                            <option value="">Select City</option>
+                            <option value="Riyadh">Riyadh</option>
+                            <option value="Jeddah">Jeddah</option>
+                            <option value="Makkah">Makkah</option>
+                            <option value="Madina">Madina</option>
+                        </select>
+                    </div>
+
+                    <div class="form_action--button">
+                        <input type="submit" value="Submit" id="submitButton" />
+                        <input type="reset" value="Reset" />
+                    </div>
+
+                </form>
+
+
+            </td>
+        </tr>
+    </table>
+    <table>
+        <td>
+            <table class="list" id="storeList">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>city</th>
+                    </tr>
+                </thead>
+                <tbody id="customersList">
+
+                </tbody>
+            </table>
+        </td>
+    </table>
+</body>
+<script type="text/javascript">
+        
+    console.log('line 1');
+    function hello2() {
+        console.log("Hello from script 2");
+        hello();  
+    }
+</script>
+
+<script type="text/javascript">
+    console.log('line 92');
+    hello2();
+
+    function hello() {
+        console.log("Hello from script.js");
+    }
+    hello();
+</script>
+<script src="/js/script.js"></script>
+
+</html>

@@ -1,0 +1,16 @@
+html
+  head
+    title= title
+  body
+    h1= message
+    table
+      tr
+        th Id
+        th Name
+        th Quantity
+      tbody
+      each item in items
+        tr
+          td #{item._id}
+          td #{item.name}
+          td #{item.shape}
