@@ -1,0 +1,13 @@
+<div class="items-list-container">
+    <h2 class="items-list-title">Items List</h2>
+    <ul class="items-list">
+      <li class="item" *ngFor="let item of filteredItems; let i = index">
+        <span class="item-name">{{ item.name }}</span> - <span class="item-shape">{{ item.shape }}</span>
+        <a class="item-edit" [routerLink]="['/update', item._id]">Edit</a>
+        <a class="item-delete" [routerLink]="['/delete', item._id]">Delete</a>
+      </li>
+    </ul>
+  </div>
+  
+  
+  
