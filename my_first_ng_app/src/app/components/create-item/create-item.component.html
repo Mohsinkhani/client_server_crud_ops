@@ -1,0 +1,12 @@
+<div>
+  <h2>Create Item</h2>
+  <form (ngSubmit)="createItem()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" [(ngModel)]="item.name" name="name" required>
+    
+    <label for="shape">shape:</label>
+    <input type="text" id="shape" [(ngModel)]="item.shape" name="shape" required>
+    
+    <button type="submit">Create</button>
+  </form>
+</div>

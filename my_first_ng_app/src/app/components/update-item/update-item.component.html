@@ -1,0 +1,12 @@
+<div>
+  <h2>Update Item</h2>
+  <form (ngSubmit)="updateItem()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" [(ngModel)]="item.name" name="name" required>
+    
+    <label for="shape">shape:</label>
+    <input type="text" id="shape" [(ngModel)]="item.shape" name="shape" required>
+    
+    <button type="submit">Update</button>
+  </form>
+</div>

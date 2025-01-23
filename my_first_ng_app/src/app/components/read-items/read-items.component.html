@@ -1,0 +1,17 @@
+<div class="items-list-container">
+  <h2 class="items-list-title">Students List</h2>
+  <ul class="items-list">
+    <li class="item" *ngFor="let student of students; let i = index">
+      <span class="item-name">{{ student.name }}</span> - <span class="item-shape">{{ student.shape }}</span>
+      <a class="item-edit" [routerLink]="['/update', student._id]">Edit</a>
+      <a class="item-delete" [routerLink]="['/delete', student._id]">Delete</a>
+    </li>
+  </ul>
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
+    <span> Page: {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()">Next</button>
+  </div>
+</div>
+
+

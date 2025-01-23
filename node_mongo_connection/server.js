@@ -40,10 +40,22 @@ async function connectToDB() {
   return myColl;
 }
 
-// Read: Display all students
+// Read: Display all students with pagination
 app.get("/students", async (req, res) => {
+  const { page = 1, limit = 10 } = req.query; // Default values: page 1, limit 10
   const myColl = await connectToDB();
-  const students = await myColl.find().toArray();
+  const totalCount = await myColl.countDocuments(); // Get total count of documents
+  const students = await myColl
+    .find()
+    .skip((page - 1) * limit)
+    .limit(parseInt(limit))
+    .toArray();
+  res.json({ totalCount, students });
+});
+
+app.get("/student/:id", async (req, res) => {
+  const myColl = await connectToDB();
+  const students = await myColl.findOne({ _id: new ObjectId(req.params.id) });
   res.json(students);
 });
 
@@ -56,6 +68,13 @@ app.post("/student", async (req, res) => {
   const result = await myColl.insertOne(doc);
   console.log(`A document was inserted with the _id: ${result.insertedId}`);
   res.send(`Document inserted successfully with ID: ${result.insertedId}`);
+});
+
+app.get("/students/filter/:name", async (req, res) => {
+  const { name } = req.params;
+  const myColl = await connectToDB();
+  const students = await myColl.find({ name: name }).toArray();
+  res.json(students);
 });
 
 

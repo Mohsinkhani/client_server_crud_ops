@@ -1,0 +1,17 @@
+/* Styles for DeleteItemComponent */
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkred;
+}
