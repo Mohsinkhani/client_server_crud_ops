@@ -42,11 +42,12 @@ async function connectToDB() {
 
 // Read: Display all students with pagination
 app.get("/students", async (req, res) => {
-  const { page = 1, limit = 10 } = req.query; // Default values: page 1, limit 10
+  const { page = 1, limit = 10, name } = req.query; // Default values: page 1, limit 10
   const myColl = await connectToDB();
-  const totalCount = await myColl.countDocuments(); // Get total count of documents
+  const query = name ? { name: name } : {}; // Filter by name if provided
+  const totalCount = await myColl.countDocuments(query); // Get total count of documents matching the query
   const students = await myColl
-    .find()
+    .find(query)
     .skip((page - 1) * limit)
     .limit(parseInt(limit))
     .toArray();
